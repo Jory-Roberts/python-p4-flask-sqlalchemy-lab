@@ -20,6 +20,9 @@ class Zookeeper(db.Model):
 
     animals = relationship("Animal", backref="zookeeper")
 
+    def __repr__(self):
+        return f"<Zookeeper {self.name}, {self.birthday}>"
+
 
 class Enclosure(db.Model):
     __tablename__ = "enclosures"
@@ -29,6 +32,9 @@ class Enclosure(db.Model):
     open_to_visitors = db.Column(db.Boolean)
 
     animals = relationship("Animal", backref="enclosure")
+
+    def __repr__(self):
+        return f"<Enclosure {self.environment}, {self.open_to_visitors}>"
 
 
 class Animal(db.Model):
@@ -40,3 +46,6 @@ class Animal(db.Model):
 
     zookeeper_id = db.Column(db.Integer, db.ForeignKey("zookeepers.id"))
     enclosure_id = db.Column(db.Integer, db.ForeignKey("enclosures.id"))
+
+    def __repr__(self):
+        return f"<Animal {self.name}, {self.species}>"
