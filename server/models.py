@@ -1,6 +1,5 @@
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import MetaData
-from sqlalchemy.orm import relationship
 
 metadata = MetaData(
     naming_convention={
@@ -18,7 +17,7 @@ class Zookeeper(db.Model):
     name = db.Column(db.String)
     birthday = db.Column(db.Date)
 
-    animals = relationship("Animal", backref="zookeeper")
+    animals = db.relationship("Animal", backref="zookeeper")
 
     def __repr__(self):
         return f"<Zookeeper {self.name}, {self.birthday}>"
@@ -31,7 +30,7 @@ class Enclosure(db.Model):
     environment = db.Column(db.String)
     open_to_visitors = db.Column(db.Boolean)
 
-    animals = relationship("Animal", backref="enclosure")
+    animals = db.relationship("Animal", backref="enclosure")
 
     def __repr__(self):
         return f"<Enclosure {self.environment}, {self.open_to_visitors}>"
