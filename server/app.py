@@ -23,7 +23,7 @@ def home():
 def animal_by_id(id):
     animal = Animal.query.filter(Animal.id == id).first()
 
-    if animal is None:
+    if not animal:
         response_body = "<h1>404 animal not found</h1>"
         response = make_response(response_body, 404)
         return response
