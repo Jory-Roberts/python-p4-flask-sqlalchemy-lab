@@ -47,4 +47,6 @@ class Animal(db.Model):
     enclosure_id = db.Column(db.Integer, db.ForeignKey("enclosures.id"))
 
     def __repr__(self):
-        return f"<Animal {self.name}, {self.species}>"
+        return (
+            f"<Animal {self.name}, {self.species}, {self.zookeeper}, {self.enclosure}>"
+        )

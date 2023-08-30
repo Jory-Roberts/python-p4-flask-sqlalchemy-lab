@@ -29,11 +29,11 @@ def animal_by_id(id):
         return response
 
     response_body = f"""
-                        <ul>Id: {animal.id}</ul>
-                        <ul>Name: {animal.name}</ul>
-                        <ul>Species: {animal.species}</ul>
-                        <ul>Zookeeper: {animal.zookeeper.name}</ul>
-                        <ul>Enclosure: {animal.enclosure.environment}</ul>
+                    <ul>Id: {animal.id}</ul>
+                    <ul>Name: {animal.name}</ul>
+                    <ul>Species: {animal.species}</ul>
+                    <ul>Zookeeper: {animal.zookeeper.name}</ul>
+                    <ul>Enclosure: {animal.enclosure.environment}</ul>
                     """
 
     response = make_response(response_body, 200)
@@ -51,9 +51,9 @@ def zookeeper_by_id(id):
         return response
 
     response_body = f"""
-                        <ul>Id: {zookeeper.id}</ul>
-                        <ul>Name: {zookeeper.name}</ul>
-                        <ul>Birthday: {zookeeper.birthday}</ul>
+                    <ul>Id: {zookeeper.id}</ul>
+                    <ul>Name: {zookeeper.name}</ul>
+                    <ul>Birthday: {zookeeper.birthday}</ul>
                     """
 
     for animal in zookeeper.animals:
@@ -74,9 +74,9 @@ def enclosure_by_id(id):
         return response
 
     response_body = f"""
-                        <ul>Id: {enclosure.id} </ul>
-                        <ul>Environment: {enclosure.environment}</ul>
-                        <ul>Open to Visitors: {enclosure.open_to_visitors}</ul>
+                    <ul>Id: {enclosure.id} </ul>
+                    <ul>Environment: {enclosure.environment}</ul>
+                    <ul>Open to Visitors: {enclosure.open_to_visitors}</ul>
                     """
 
     for animal in enclosure.animals:
