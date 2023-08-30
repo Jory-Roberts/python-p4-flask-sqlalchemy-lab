@@ -21,7 +21,24 @@ def home():
 
 @app.route("/animal/<int:id>")
 def animal_by_id(id):
-    return ""
+    animal = Animal.query.filter(Animal.id == id).first()
+
+    if animal is None:
+        response_body = "<h1>404 animal not found</h1>"
+        response = make_response(response_body, 404)
+        return response
+    else:
+        response_body = f"""
+
+                            <ul>Id: {animal.id}</ul>
+                            <ul>Name: {animal.name}</ul>
+                            <ul>Species: {animal.species}</ul>
+                            <ul>Zookeeper: {animal.zookeeper.name}</ul>
+                            <ul>Enclosure: {animal.enclosure.environment}</ul>
+
+                    """
+
+    return response_body
 
 
 @app.route("/zookeeper/<int:id>")
