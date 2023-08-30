@@ -43,12 +43,46 @@ def animal_by_id(id):
 
 @app.route("/zookeeper/<int:id>")
 def zookeeper_by_id(id):
-    return ""
+    zookeeper = Zookeeper.query.filter(Zookeeper.id == id).first()
+
+    if zookeeper is None:
+        response_body = "<h1>404 zookeeper not found</h1>"
+        response = make_response(response_body, 404)
+        return response
+    else:
+        animals_list = "".join(
+            [f"<ul>Animal: {animal.name}</ul>" for animal in zookeeper.animals]
+        )
+
+        response_body = f"""
+                            <ul>Id: {zookeeper.id}</ul>
+                            <ul>Name: {zookeeper.name}</ul>
+                            <ul>Birthday: {zookeeper.birthday}</ul>
+                            {animals_list}
+                        """
+    return response_body
 
 
 @app.route("/enclosure/<int:id>")
 def enclosure_by_id(id):
-    return ""
+    enclosure = Enclosure.query.filter(Enclosure.id == id).first()
+
+    if enclosure is None:
+        response_body = "<h1>404 enclosure not found</h1>"
+        response = make_response(response_body, 404)
+        return response
+    else:
+        animals_list = "".join(
+            [f"<ul>Animal: {animal.name}</ul>" for animal in enclosure.animals]
+        )
+        response_body = f"""
+                            <ul>Id: {enclosure.id} </ul>
+                            <ul>Environment: {enclosure.environment}</ul>
+                            <ul>Open to Visitors: {enclosure.open_to_visitors}</ul>
+                            {animals_list}
+                        """
+
+    return response_body
 
 
 if __name__ == "__main__":
